@@ -14,7 +14,7 @@ const App = () => {
   const PAGES: { [key: string]: React.ElementType } = {
     "page-one": PageOne,
     "page-two": PageOne,
-    "page-three": PageThree,
+    "page-three": PageOne,
   };
 
   const Page = ({ id }: PageProps): JSX.Element => {

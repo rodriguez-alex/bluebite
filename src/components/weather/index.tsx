@@ -67,7 +67,7 @@ const Weather = ({ lat, lon }: WeatherProps) => {
   };
 
   return (
-    <>
+    <div style={{ border: "1px solid black" }}>
       <div>
         <div>
           <Cloudy />
@@ -83,7 +83,7 @@ const Weather = ({ lat, lon }: WeatherProps) => {
       <div className="upcoming-weather">
         <>{FutureWeather({ upcomingWeather: weather.upcomming })}</>
       </div>
-    </>
+    </div>
   );
 };
 
