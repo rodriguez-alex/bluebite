@@ -4,46 +4,24 @@ import Image from "../../components/image";
 import Button from "../../components/button";
 import { api } from "../../shared/api";
 
+import { Variable, Page } from "../../shared/interfaces";
+
 interface PageProps {
   id?: string;
 }
-
-interface List {
-  id: number;
-  components: number[];
-}
-
-interface ComponentOptions {
-  text: string;
-  variable: string;
-  value: string;
-}
-
-interface Component {
-  id: number;
-  type: string;
-  options: ComponentOptions;
-}
-
-interface Variable {
-  name: string;
-  type: string;
-  initialValue: string;
-  value?: string;
-}
-
-interface Page {
-  lists: List[];
-  components: Component[];
-  variables?: Variable[];
-}
-
 interface ComponentRenderProps {
   pageFormat: Page;
   listId: number;
   onSaveVariable: any;
   vars: Variable[];
 }
+
+interface ConditionProps {
+  opts: any;
+  listChildId: number;
+  vars: Variable[];
+}
+
 const ComponentsRenders = ({
   pageFormat,
   listId = 0,
@@ -51,7 +29,6 @@ const ComponentsRenders = ({
   vars,
 }: ComponentRenderProps) => {
   const { lists, components } = pageFormat;
-  const [listToRender, setListToRender] = useState<number>(listId);
 
   const COMPONENT_MAP = components.reduce(
     (accumulator: any, currentVal: any) => {
@@ -60,12 +37,6 @@ const ComponentsRenders = ({
     },
     {}
   );
-
-  interface ConditionProps {
-    opts: any;
-    listChildId: number;
-    vars: Variable[];
-  }
 
   const Condition = ({ opts, listChildId, vars }: ConditionProps) => {
     const variableRule = vars.find(
@@ -94,6 +65,7 @@ const ComponentsRenders = ({
         if (currComponent.type === "weather") {
           return (
             <div
+              key={index}
               style={{
                 marginBottom: "10px",
                 display: "flex",
@@ -101,7 +73,6 @@ const ComponentsRenders = ({
               }}
             >
               <Weather
-                key={index}
                 lat={currComponent.options.lat}
                 lon={currComponent.options.lon}
               />
@@ -110,6 +81,7 @@ const ComponentsRenders = ({
         } else if (currComponent.type === "image") {
           return (
             <div
+              key={index}
               style={{
                 marginBottom: "10px",
                 display: "flex",
@@ -117,7 +89,6 @@ const ComponentsRenders = ({
               }}
             >
               <Image
-                key={index}
                 src={currComponent.options.src}
                 alt={currComponent.options.alt}
               />
@@ -126,12 +97,12 @@ const ComponentsRenders = ({
         } else if (currComponent.type === "condition") {
           return (
             <div
+              key={index}
               style={{
                 marginBottom: "10px",
               }}
             >
               <Condition
-                key={index}
                 opts={currComponent.options}
                 listChildId={currComponent.children}
                 vars={vars}
@@ -141,6 +112,7 @@ const ComponentsRenders = ({
         } else if (currComponent.type === "button") {
           return (
             <div
+              key={index}
               style={{
                 marginBottom: "10px",
                 display: "flex",
@@ -148,7 +120,6 @@ const ComponentsRenders = ({
               }}
             >
               <Button
-                key={index}
                 opts={currComponent.options}
                 variables={pageFormat.variables}
                 onSaveVariable={onSaveVariable}
@@ -164,7 +135,7 @@ const ComponentsRenders = ({
     });
   };
 
-  return <>{Comps(listToRender)}</>;
+  return <>{Comps(listId)}</>;
 };
 
 const PageOne = ({ id }: PageProps) => {
