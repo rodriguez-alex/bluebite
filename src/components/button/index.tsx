@@ -1,9 +1,9 @@
-import { ReactNode } from "react";
+import { ComponentOptions } from "../../shared/interfaces";
 
 interface ButtonProps {
   onSaveVariable: any;
-  variables: any;
-  opts: any;
+  variables: any; // NOTE: Update with correct type
+  opts: ComponentOptions;
 }
 
 const Button = ({ opts, variables, onSaveVariable }: ButtonProps) => {

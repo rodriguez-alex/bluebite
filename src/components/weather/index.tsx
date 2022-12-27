@@ -53,6 +53,8 @@ const Weather = ({ lat, lon }: WeatherProps) => {
     upcomingWeather: UpcommingWeatherData[];
   }
 
+  // NOTE: a function that can be extracted out of this component and exported
+  // if other new or old weather components want to use these set of SVG icons
   const getWeatherIcon = (condition: string): any => {
     if (condition && condition !== "--") {
       const Icon = WEATHER_ICONS_MAP[condition];
