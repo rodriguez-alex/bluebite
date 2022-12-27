@@ -9,35 +9,35 @@ interface ButtonProps {
 const Button = ({ opts, variables, onSaveVariable }: ButtonProps) => {
   const controlsVariable = opts.variable;
   let newVariables = [...variables];
-  console.log(controlsVariable, "=====controlsVariable======");
-  console.log(opts, "<<<<<<<<-------opts");
-  // console.log(
-  //   {
-  //     variables: {
-  //       value: opts.value,
-  //     },
-  //     ...pageFormat,
-  //   },
-  //   " compleetED!!! < ======"
-  // );
   const matchesVarName = (varOpts: any) => varOpts.name === controlsVariable;
   const findVarIndexToChange = newVariables.findIndex(matchesVarName);
-
-  // console.log(newVariables[findVarIndexToChange], "findVarToChange----------");
-
-  // console.log(newVariables, "NOW UPDATED?!>!>?>?!");
 
   return (
     <>
       <button
+        style={{
+          backgroundColor: "#4162e7",
+          color: "#fff",
+          border: "none",
+          borderRadius: 10,
+          padding: "20px",
+          minWidth: "330px",
+          minHeight: "150px",
+          display: "flex",
+        }}
         onClick={() => {
           newVariables[findVarIndexToChange].value = opts.value;
 
-          console.log(newVariables, "mew variables?!???!");
           onSaveVariable(newVariables);
         }}
       >
-        {opts.text}
+        <span
+          style={{
+            fontSize: "20px",
+          }}
+        >
+          {opts.text}
+        </span>
       </button>
     </>
   );

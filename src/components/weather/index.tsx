@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Cloudy } from "./icons";
+import { WEATHER_ICONS_MAP } from "./icons";
 import { api } from "../../shared/api";
 
 interface WeatherProps {
@@ -49,39 +49,61 @@ const Weather = ({ lat, lon }: WeatherProps) => {
     getWeather();
   }, [getWeather]);
 
-  console.log("weather", weather);
-
   interface FutureWeatherProps {
     upcomingWeather: UpcommingWeatherData[];
   }
 
+  const getWeatherIcon = (condition: string): any => {
+    if (condition && condition !== "--") {
+      const Icon = WEATHER_ICONS_MAP[condition];
+      return <Icon />;
+    }
+    return null;
+  };
+
   const FutureWeather = ({ upcomingWeather }: FutureWeatherProps) => {
     return upcomingWeather.map((val, index) => {
       return (
-        <>
-          <Cloudy />
+        <div key={index}>
+          {getWeatherIcon(val.condition)}
           <div>{val.day}</div>
-        </>
+        </div>
       );
     });
   };
 
   return (
-    <div style={{ border: "1px solid black" }}>
-      <div>
-        <div>
-          <Cloudy />
+    <div
+      style={{
+        border: "1px solid black",
+        background: "#fff",
+        maxWidth: "330px",
+        borderRadius: 10,
+        padding: "20px",
+        boxSizing: "border-box",
+        display: "flex",
+      }}
+    >
+      <div style={{ display: "flex", width: "50%" }}>
+        <div style={{ maxWidth: "40%" }}>
+          {getWeatherIcon(weather.condition)}
         </div>
         <div>
-          <div>
-            {weather.temperature} {weather.unit}
+          <div style={{ fontSize: "24px" }}>
+            {weather.temperature}
+            {"°"} {weather.unit.toUpperCase()}
           </div>
           {weather.conditionName}
         </div>
       </div>
 
-      <div className="upcoming-weather">
-        <>{FutureWeather({ upcomingWeather: weather.upcomming })}</>
+      <div className="upcoming-weather" style={{ width: "50%" }}>
+        <span style={{ display: "block", textAlign: "right" }}>
+          {weather.location}
+        </span>
+        <div style={{ display: "flex" }}>
+          {FutureWeather({ upcomingWeather: weather.upcomming })}
+        </div>
       </div>
     </div>
   );

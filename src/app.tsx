@@ -1,7 +1,5 @@
 import React from "react";
 import PageOne from "./pages/page-one";
-import PageTwo from "./pages/page-two";
-import PageThree from "./pages/page-three";
 import { useParams } from "react-router";
 
 interface PageProps {

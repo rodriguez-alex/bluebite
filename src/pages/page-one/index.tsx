@@ -68,13 +68,9 @@ const ComponentsRenders = ({
   }
 
   const Condition = ({ opts, listChildId, vars }: ConditionProps) => {
-    console.log(vars, "in condition");
     const variableRule = vars.find(
       (singleVar) => singleVar.name === opts.variable
     );
-    console.log(variableRule, "========variableRule========");
-    console.log(opts.value, "========opts.value========");
-    // console.log(listChildId, "listChildId");
     const shouldShowChild = (varRule: any, optsValue: any) => {
       if (varRule?.value) {
         return varRule.value === optsValue;
@@ -93,38 +89,64 @@ const ComponentsRenders = ({
 
   const Comps = (listToRender: number) => {
     return lists[listToRender].components.map((val, index) => {
-      console.log(COMPONENT_MAP, "LIST RENDER!!!!");
       const currComponent = COMPONENT_MAP[val];
       const createComponent = (val: number) => {
         if (currComponent.type === "weather") {
           return (
-            <Weather
-              key={index}
-              lat={currComponent.options.lat}
-              lon={currComponent.options.lon}
-            />
+            <div
+              style={{
+                marginBottom: "10px",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <Weather
+                key={index}
+                lat={currComponent.options.lat}
+                lon={currComponent.options.lon}
+              />
+            </div>
           );
         } else if (currComponent.type === "image") {
           return (
-            <Image
-              key={index}
-              src={currComponent.options.src}
-              alt={currComponent.options.alt}
-            />
+            <div
+              style={{
+                marginBottom: "10px",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <Image
+                key={index}
+                src={currComponent.options.src}
+                alt={currComponent.options.alt}
+              />
+            </div>
           );
         } else if (currComponent.type === "condition") {
-          console.log(vars, "wtf------");
           return (
-            <Condition
-              key={index}
-              opts={currComponent.options}
-              listChildId={currComponent.children}
-              vars={vars}
-            />
+            <div
+              style={{
+                marginBottom: "10px",
+              }}
+            >
+              <Condition
+                key={index}
+                opts={currComponent.options}
+                listChildId={currComponent.children}
+                vars={vars}
+              />
+            </div>
           );
         } else if (currComponent.type === "button") {
           return (
-            <div>
+            <div
+              style={{
+                marginBottom: "10px",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
               <Button
                 key={index}
                 opts={currComponent.options}

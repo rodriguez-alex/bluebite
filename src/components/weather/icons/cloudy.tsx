@@ -5,6 +5,7 @@ export default function Cloudy() {
       width="128"
       height="128"
       viewBox="0 0 128 128"
+      style={{ width: "100%", height: "auto" }}
     >
       <title>Clouds</title>
       <g fill="none" fillRule="evenodd">
