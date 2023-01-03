@@ -3,9 +3,9 @@
 ## Assessment Notes and Misses
 
 - The assessment was done in typescript, but due to setting a time limit for myself, I was unable to go back and type every single parameter. There are notes within the code to address these as would be in a real world work environment.
-- I decided not to use the redux as this was a small project so saving data to a store didn't seem really necessary. If we were to scale this project, this would be a discussion between teammamtes between pros and cons
-- Due to time a time limit for myself, the Dashboard component/page is a fairly complex component. Given this, I would have definitely created a test around this component to ensure that everything is working as expected. Making at least 3 different test on 3 different scenarios.
-- My current preference of styling is using tailwind, I tried to set that up in this app but for some reason I was unable to get it working. So due to my time limit, I ended up styling everything via object properties on the components. Tailwind allows you to see exactly how the component is being styled via class names when you look at the component, so going back and updating the components with tailwind is fairly quick and straightforward once the set up would be complete
+- I decided not to use redux as this was a small project so saving data to a store didn't seem really necessary. If we were to scale this project, this would be a discussion between teammates between pros and cons.
+- Due to a time limit I set for myself, the Dashboard component/page is a fairly complex component. Given this, I would have definitely created a test around this component to ensure that everything is working as expected. Making at least 3 different tests based on the acceptance criteria of the 3 different scenarios.
+- My current preference of styling is using tailwind, I tried to set that up in this app but was unable to get it working. Due to my time limit I set myself, I ended up styling everything via object properties on the components. Tailwind allows you to see exactly how the component is being styled via class names when you look at the component, so going back and updating the components with tailwind is fairly quick and straightforward once the set up of Tailwind would be complete.
 - I used an axios shared util to make the API calls, nothing crazy here.
 
 ## Local Setup
